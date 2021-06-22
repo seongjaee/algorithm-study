@@ -1,1 +1,10 @@
 # algorithm-study
+
+> BOJ 문제를 풀면서 알고리즘을 공부하고 있습니다.  
+> 문제들 중 기억하고 싶은 알고리즘과 코드를 정리해두기 위한 공부 노트입니다.
+
+<br/>
+
+[BOJ 프로필](https://www.acmicpc.net/user/xpsxm468)
+
+ [![Solved.ac stats](http://mazassumnida.wtf/api/v2/generate_badge?boj=xpsxm468)](https://solved.ac/xpsxm468/)
