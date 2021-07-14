@@ -7,4 +7,4 @@
 
 [BOJ 프로필](https://www.acmicpc.net/user/xpsxm468)
 
- [![Solved.ac stats](http://mazassumnida.wtf/api/v2/generate_badge?boj=xpsxm468)](https://solved.ac/xpsxm468/)
+[푼 문제들](https://solved.ac/profile/xpsxm468)
