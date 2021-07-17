@@ -26,11 +26,10 @@ def power(a, k):
 ```python
 def power(a, k):
     if k == 1:
-		    return C
-        
-		x = power(a, k//2)
-		if n % 2 == 0:
-			  return x * x
-		else:
-			  return x * x * C
+        return C
+    x = power(a, k//2)
+    if n % 2 == 0:
+        return x * x
+    else:
+        return x * x * C
 ```
