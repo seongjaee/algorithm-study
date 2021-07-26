@@ -7,4 +7,6 @@
 
 [BOJ 프로필](https://www.acmicpc.net/user/xpsxm468)
 
+[Solved.ac 프로필](https://solved.ac/profile/xpsxm468)
+
 [푼 문제들](https://solved.ac/profile/xpsxm468/solved)
