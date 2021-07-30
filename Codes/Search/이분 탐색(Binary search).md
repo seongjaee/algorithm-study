@@ -58,7 +58,7 @@ def binarySearch(array, value, left, right):
 
 처음의 `mid = 4`고, `array[mid] = 3` 이다.
 
-![image](./Binary_search.assets/image01.png)
+![image](./Binary_search.assets/image08.png)
 
 `array[mid]`가 `8`보다 크므로 `right = mid - 1`이 되고, 다시 `mid`를 계산하면 아래 그림과 같다.
 
