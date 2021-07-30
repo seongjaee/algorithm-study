@@ -58,17 +58,17 @@ def binarySearch(array, value, left, right):
 
 처음의 `mid = 4`고, `array[mid] = 3` 이다.
 
-![그림8](../../../Desktop/그림8.png)
+![그림8](이분 탐색(Binary search).assets/그림8.png)
 
 `array[mid]`가 `8`보다 크므로 `right = mid - 1`이 되고, 다시 `mid`를 계산하면 아래 그림과 같다.
 
-![그림9](../../../Desktop/그림9.png)
+![그림9](이분 탐색(Binary search).assets/그림9.png)
 
 `mid = 1`고, `array[mid] = 2`이다.
 
 `array[mid]`가 `8`보다 작으므로 `left = mid + 1`이 되고, 다시 `mid`를 계산하면 아래 그림과 같다.
 
-![그림10](../../../Desktop/그림10.png)
+![그림10](이분 탐색(Binary search).assets/그림10.png)
 
 `mid = 2`고, `array[mid] = 5`이다. 
 
@@ -76,7 +76,7 @@ def binarySearch(array, value, left, right):
 
 
 
-![그림12](../../../Desktop/그림12.png)
+![그림12](이분 탐색(Binary search).assets/그림12.png)
 
 `mid = 3`이고 `array[mid] = 8` 이므로 원하는 값을 찾았다!
 
@@ -140,23 +140,23 @@ def binarySearch(array, value, left, right):
 
 처음의 `mid = 4`고, `array[mid] = 3` 이다.
 
-![그림1](../../../Desktop/그림1.png)
+![그림1](이분 탐색(Binary search).assets/그림1.png)
 
 `array[mid]`의 값이 더 작거나 같으니까 `right = mid - 1` 이고, 다음 `mid`까지 구해보면 밑의 그림과 같다.
 
-![그림5](../../../Desktop/그림5.png)
+![그림5](이분 탐색(Binary search).assets/그림5.png)
 
 `mid = 6`이고 `array[mid] = 4`이다.
 
  `array[mid]`값이 `3`보다 크므로 `right = mid`가 되고, `mid`를 계산하면 `mid`는 `left`와 같아진다.
 
-![그림6](../../../Desktop/그림6.png)
+![그림6](이분 탐색(Binary search).assets/그림6.png)
 
 `mid = 5`이고 `array[mid] = 3`이다.
 
  `array[mid]`이  `3`보다 작거나 같으므로 `left = mid + 1`이 되서 `left == right`가 된다.
 
-![그림7](../../../Desktop/그림7.png)
+![그림7](이분 탐색(Binary search).assets/그림7.png)
 
 이제 반복문의 종료 조건이므로 `left - 1`이 반환된다. 즉 인덱스 `5`가 반환된다.
 
@@ -192,25 +192,25 @@ def binarySearch(array, value, left, right):
 
 처음의 `mid = 4`고, `array[mid] = 3` 이다.
 
-![그림1](../../../Desktop/그림1.png)
+![그림1](이분 탐색(Binary search).assets/그림1.png)
 
  `array[mid]`의 값이 더 크거나 같으니까 `right = mid - 1` 이고, 다음 `mid`까지 구해보면 밑의 그림과 같다.
 
 
 
-![그림2](../../../Desktop/그림2.png)
+![그림2](이분 탐색(Binary search).assets/그림2.png)
 
 이번엔 `mid = 2` 이고 `array[mid] = 2`이다.
 
 `array[mid]`의 값이 더 작으니까 `left = mid`가 된다.
 
-![그림3](../../../Desktop/그림3.png)
+![그림3](이분 탐색(Binary search).assets/그림3.png)
 
 `mid = (left + right + 1) // 2`를 계산하면 `mid`는 `right`와 같아진다.
 
  `array[mid]`의 값이 더 크거나 같으니까 `right = mid - 1` 이고, 그럼 `left == right`가 된다.
 
-![그림4](../../../Desktop/그림4.png)
+![그림4](이분 탐색(Binary search).assets/그림4.png)
 
 
 
