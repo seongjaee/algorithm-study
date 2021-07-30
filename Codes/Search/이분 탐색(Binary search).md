@@ -142,7 +142,7 @@ def binarySearch(array, value, left, right):
 
 ![image](./Binary_search.assets/image01.png)
 
-`array[mid]`의 값이 더 작거나 같으니까 `right = mid - 1` 이고, 다음 `mid`까지 구해보면 밑의 그림과 같다.
+`array[mid]`의 값이 더 작거나 같으니까 `left = mid + 1` 이고, 다음 `mid`까지 구해보면 밑의 그림과 같다.
 
 ![image](./Binary_search.assets/image05.png)
 
