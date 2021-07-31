@@ -66,3 +66,36 @@ while q:
 
 
 다익스트라와 BFS가 섞인 느낌이다.
+
+
+
+
+
+## BOJ 13549 숨바꼭질 3
+
+[BOJ 13549 숨바꼭질 3](https://www.acmicpc.net/problem/13549), 0-1 BFS을 이용해 풀 수 있는 문제다!
+
+```python
+from collections import deque
+
+def bfs(start):
+    q = deque([(start, 0)])
+    while q:
+        for _ in range(len(q)):
+            node, level = q.popleft()
+            if node in visited: continue  # 방문했으면 건너 뜀
+            if node < 0 or node > 200000: continue  # 너무 많이 갔으면 건너뜀
+            if node == end: return level  # 찾으면 리턴
+            
+            visited.add(node)  # 방문 처리
+            
+            q.append((node+1, level+1))  # x+1은 1초 걸림
+            q.append((node-1, level+1))  # x-1은 1초 걸림
+            q.appendleft((node*2, level))  # 2x는 0초 걸림
+
+n, end = map(int ,input().split())
+visited = set()
+
+print(bfs(n))
+```
+
