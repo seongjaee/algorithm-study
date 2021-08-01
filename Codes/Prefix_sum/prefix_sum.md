@@ -34,7 +34,7 @@
 
   
 
-  ![image01](구간 합.assets/image01.png)
+  ![image01](prefix_sum.assets/image01.png)
 
 
 
@@ -46,7 +46,7 @@
 
   `psum[7] - psum[2]` = -2 - 1 = -3 이다.
   
-  ![image02](구간 합.assets/image02.png)
+  ![image02](prefix_sum.assets/image02.png)
 
 
 
