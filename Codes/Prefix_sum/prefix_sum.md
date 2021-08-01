@@ -22,6 +22,8 @@
 
   psum = [0, 3, 1, -3, -12, -12, -9, -2, 11, 19, 16]을 구한다.
 
+  ### 코드
+
   ```python
   seq = [3, -2, -4, -9, 0, 3, 7, 13, 8, -3]
   psum = [0]
@@ -34,7 +36,13 @@
 
   
 
+  
+
   ![image01](prefix_sum.assets/image01.png)
+
+
+
+<br/>
 
 
 
@@ -48,9 +56,15 @@
   
   ![image02](prefix_sum.assets/image02.png)
 
+<br/>
 
+---
 
-## BOJ 2559번 : 수열
+<br/>
+
+## BOJ 문제
+
+### BOJ 2559번 : 수열
 
 [BOJ 2559번 : 수열](https://www.acmicpc.net/problem/2559)
 
@@ -74,7 +88,7 @@ for j in range(n-k+1):
 print(result)
 ```
 
-## BOJ 11441번: 합 구하기
+### BOJ 11441번: 합 구하기
 
 [BOJ 11441번: 합 구하기](https://www.acmicpc.net/problem/11441)
 
