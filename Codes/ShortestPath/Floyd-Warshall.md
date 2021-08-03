@@ -2,7 +2,7 @@
 
 >  [위키백과 플로이드 워셜](https://ko.wikipedia.org/wiki/%ED%94%8C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%9B%8C%EC%85%9C_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 
-## 설명
+## :bread: 설명
 
 주어진 그래프에 대해 최단 경로를 찾는 알고리즘!
 
@@ -37,7 +37,7 @@
 
 
 
-## 코드
+## :cookie: 코드
 
 ```python
 # v : 간선의 개수
@@ -68,7 +68,7 @@ for k in vertices:
 
 
 
-## 그림으로 보기
+## :doughnut: 그림으로 보기
 
 4개의 꼭짓점으로 된 그래프.
 
@@ -142,9 +142,9 @@ for k in vertices:
 
 
 
-## BOJ 11404 플로이드
+## :hamburger: BOJ 11404 플로이드
 
-[BOJ 11404 플로이드](https://www.acmicpc.net/problem/11404), 플로이드 워셜 알고리즘을 이용하는 문제다!
+[BOJ 11404 플로이드](https://www.acmicpc.net/problem/11404), 플로이드 워셜 알고리즘을 이용하는 문제!
 
 ### 풀이 코드
 

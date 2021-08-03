@@ -14,7 +14,7 @@
 
 
 
-## 구간 합 알고리즘
+## :bread: 구간 합 알고리즘
 
 - 주어진 수열의 누적 합을 미리 계산해둔다.
 
@@ -22,23 +22,25 @@
 
   psum = [0, 3, 1, -3, -12, -12, -9, -2, 11, 19, 16]을 구한다.
 
-  ### 코드
-
-  ```python
-  seq = [3, -2, -4, -9, 0, 3, 7, 13, 8, -3]
-  psum = [0]
-  
-  now = 0
-  for num in seq:
-      now += num  # seq의 앞에서부터 하나씩 더해가면서
-      psum.append(now)  # psum에 저장
-  ```
-
   
 
-  
+## :cookie: 코드
 
-  ![image01](prefix_sum.assets/image01.png)
+```python
+seq = [3, -2, -4, -9, 0, 3, 7, 13, 8, -3]
+psum = [0]
+
+now = 0
+for num in seq:
+    now += num  # seq의 앞에서부터 하나씩 더해가면서
+    psum.append(now)  # psum에 저장
+```
+
+
+
+
+
+![image01](prefix_sum.assets/image01.png)
 
 
 
@@ -54,7 +56,15 @@
 
   `psum[7] - psum[2]` = -2 - 1 = -3 이다.
   
-  ![image02](prefix_sum.assets/image02.png)
+  
+
+```python
+sum2to6 = psum[7] - psum[2]
+```
+
+
+
+![image02](prefix_sum.assets/image02.png)
 
 <br/>
 
@@ -62,7 +72,7 @@
 
 <br/>
 
-## BOJ 문제
+## :hamburger: BOJ 문제
 
 ### BOJ 2559번 : 수열
 
