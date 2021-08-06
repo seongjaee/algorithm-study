@@ -21,7 +21,7 @@ L(i) =
 \begin{cases}
 1 + \text{max}(L(j)), \text{  where } j < i & arr[j] < arr[i]\\
 1, \text{  if no such j exists}
-\end{cases}
+\end{cases}
 $$
 L(i) 는 arr[j] < arr[i] 이고 j < i 인 j들에 대해, 1 + max(L(j)) 이다.
 
@@ -78,7 +78,7 @@ for i in range(n):
         idx = bisect.bisect_left(L, arr[i])
         L[idx] = arr[i]
         
-print(len(dp))
+print(len(L))
 ```
 
 ## BOJ
