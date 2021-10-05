@@ -119,4 +119,75 @@ def prim(start):
 
 ## 크루스칼 알고리즘
 
-`추가 해야함.`
+- 가중치가 가장 작은 간선부터 그래프에 포함시켜 간다.
+- union find를 이용한다.
+
+### 수행 순서
+
+1. 가중치가 가장 작은 간선을 찾는다.
+
+2. 간선을 포함해도 사이클이 발생하지 않는다면 포함시킨다.
+
+3. 사이클이 발생한다면 포함하지 않는다.
+
+
+
+## 코드
+
+```python
+# union, find
+def find(node):
+    # index의 루트노드를 재귀적으로 찾음
+    if parent[node] == node: 
+        return node
+    parent[node] = find(parent[node])
+    return parent[node]
+
+def union(x, y):
+    # x와 y를 같은 집합으로
+    x = find(x)
+    y = find(y)
+
+    if x == y:
+        return
+
+    if parent[x] > parent[y]:
+        parent[x] = y
+    else:
+        parent[y] = x
+        
+
+```
+
+```python
+def kruskal(graph):
+    weight = 0
+    tree = []
+    graph = sorted(graph)
+    for edge in graph:
+        cost, a, b = edge
+        # a와 b가 서로 다른 집합일 때, 즉 간선(a, b)로 사이클이 발생하지 않을 때
+        if find(a) != find(b):
+            union(a, b)
+            weight += cost
+            tree.append((a, b))
+            
+    return weight, tree
+
+# e: 간선 개수
+# 그래프 입력받기
+graph = []
+for _ in range(e):
+    a, b, cost = map(int, input().split())
+    graph.append((cost, a, b))
+
+# 간선 가중치 기준으로 정렬
+graph.sort()
+
+# union find용 루트 노드 저장
+# 자기 자신을 루트 노드로 초기화
+parent = [i for i in range(v + 1)]
+
+kruskal(graph)
+```
+
