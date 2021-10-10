@@ -8,11 +8,11 @@
 
 즉 주어진 그래프에 대해, **가장 적은 비용으로 모든 노드를 연결한 그래프**이다.
 
-![tree01](C:\Users\seongjaee\algorithm-study\Codes\Minimum_Spanning_Tree.assets\tree01.png)
+![tree01](.\Minimum_Spanning_Tree.assets\tree01.png)
 
 위와 같은 트리가 있을 때 최소 스패닝 트리는 가중치가 1, 2, 3인 간선만을 골라 만드는 트리다.
 
-![tree02](C:\Users\seongjaee\algorithm-study\Codes\Minimum_Spanning_Tree.assets\tree02.png)
+![tree02](.\Minimum_Spanning_Tree.assets\tree02.png)
 
 
 
@@ -79,7 +79,7 @@ def prim(start):
 
   
 
-![tree03](C:\Users\seongjaee\algorithm-study\Codes\Minimum_Spanning_Tree.assets\tree03.png)
+![tree03](.\Minimum_Spanning_Tree.assets\tree03.png)
 
 - 정점 0과 인접한 모든 정점 정보를 heap에 넣는다.
   - `heap = [(1, 2, 0), (2, 3, 0), (3, 1, 0)]`
@@ -91,7 +91,7 @@ def prim(start):
 
 
 
-![tree04](C:\Users\seongjaee\algorithm-study\Codes\Minimum_Spanning_Tree.assets\tree04.png)
+![tree04](.\Minimum_Spanning_Tree.assets\tree04.png)
 
 - 꺼낸 정점 2와 인접한 모든 정점 정보를 heap에 넣는다.
   - `heap = [(2, 3, 0), (3, 1, 0), (5, 1, 2), (7, 3, 2)]`
@@ -104,7 +104,7 @@ def prim(start):
 
     
 
-![tree05](C:\Users\seongjaee\algorithm-study\Codes\Minimum_Spanning_Tree.assets\tree05.png)
+![tree05](.\Minimum_Spanning_Tree.assets\tree05.png)
 
 - 꺼낸 정점 3과 인접한 모든 정점 정보를 heap에 넣는다.
   - `heap = [(3, 1, 0), (5, 1, 2), (7, 3, 2)]`
@@ -113,7 +113,7 @@ def prim(start):
 
 - heap에 담긴 정점 중 가중치가 최소인 정점 정보 `(3, 1, 0)`을 꺼내고 트리에 추가
 
-![tree06](C:\Users\seongjaee\algorithm-study\Codes\Minimum_Spanning_Tree.assets\tree06.png)
+![tree06](.\Minimum_Spanning_Tree.assets\tree06.png)
 
 
 
