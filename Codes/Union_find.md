@@ -42,11 +42,11 @@
 `find` 함수는 재귀적으로 자신의 루트 노드를 찾아간다.
 
 ```python
+# path compression
 def find(node):
     # index의 루트노드를 재귀적으로 찾음
-    if parent[node] == node: 
-        return node
-    parent[node] = find(parent[node])
+    if parent[node] != node: 
+        parent[node] = find(parent[node])
     return parent[node]
 ```
 
@@ -80,6 +80,28 @@ def union(x, y):
 ```
 
 <br/>
+
+#### rank를 이용한 union
+
+union 연산 때 트리의 높이가 계속 높아질 수 있다는 단점이 있다. 연산 시에 속도가 느려질 수 있다.
+
+이를 해결하기 위해 rank를 이용한다. 두 노드를 union할 때 rank가 더 큰 노드를 부모 노드로 한다.
+
+```python
+rank = [0] * (n + 1)  # rank 표시 배열
+
+def union(x, y):
+    # x와 y를 같은 집합으로
+    x = find(x)
+    y = find(y)
+
+    if rank[x] > rank[y]:
+        parent[y] = x
+    else:
+        parent[x] = y
+        if rank[x] == rank[y]:
+            rank[y] += 1
+```
 
 
 
