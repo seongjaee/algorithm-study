@@ -28,50 +28,49 @@
 
 1. 시작 정점 결정
 2. 시작 정점에서 다른 모든 정점까지의 거리는 무한대로 초기화(시작 정점은 0)
-3. 다음 과정을 N 번 반복
+3. 다음 과정을 V 번 반복
    1. 전체 간선을 탐색
    2. 현재 간선을 거쳐 다른 노드로 가는 거리가 더 짧다면 최단 거리 갱신
-4. 마지막 반복(N번째) 시에 최단 거리가 갱신됐다면 음수 사이클 존재
+4. 마지막 반복(V번째) 시에 최단 거리가 갱신됐다면 음수 사이클 존재
 
 
 
 ## 코드 :cookie:
 
  ```python
- # n : 정점 개수, v : 간선 개수
+ # V : 정점 개수, E : 간선 개수, 방향 그래프
  
  # 간선 정보 입력받아 간선 배열 만들기
  edges = []
- for _ in range(v):
+ for _ in range(E):
      s, e, cost = map(int, input().split())
  	edges.append((s, e, cost))
      
  # 거리 배열 초기화
- dist = [INF] * (n + 1)
+ dist = [INF] * (V + 1)
  ```
 
 ```python
 # 벨만-포드 알고리즘
-def bellman_ford(edges, n, v, start):
+def bellman_ford(edges, start):
     dist[start] = 0
     # 총 n번 반복
-    for i in range(n):
+    for i in range(V):
         # 반복마다 모든 간선을 탐색
-        for j in range(v):
-            cur_node, nxt_node, cost = edges[j]
-            # 현재 간선을 거쳐 
-            if dist[cur_node] != INF and dist[nxt_node] > dist[cur_node] + cost:
-                dist[nxt_node] = dist[cur_node] + cost
-                if i == n - 1:
+        for j in range(E):
+            cur, nxt, cost = edges[j]
+            # 현재 간선을 거쳐가는 nxt정점까지의 거리가 더 짧으면 갱신
+            if dist[cur] != INF and dist[nxt] > dist[cur] + cost:
+                dist[nxt] = dist[cur] + cost
+                if i == V - 1:
                     return True
     return False
 
 # 실행
-is_negative_cycle = bellman_ford(edges, n, v, start)
+has_negative_cycle = bellman_ford(edges, start)
 
-if is_negative_cycle:
+if has_negative_cycle:
     print('음수 사이클 존재')
-    
 else:
     print(dist)
 ```
