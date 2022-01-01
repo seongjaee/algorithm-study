@@ -77,10 +77,9 @@ $$
 def init_tree(start, end, node):
     if start == end:
         tree[node] = arr[start]
-        return tree[node]
-    
-    mid = (start + end) // 2
-    tree[node] = init(start, mid, node * 2) + init(mid + 1, end, node * 2 + 1)
+    else:
+        mid = (start + end) // 2
+        tree[node] = init(start, mid, node * 2) + init(mid + 1, end, node * 2 + 1)
     return tree[node]
 
 tree = [None] * (4 * n)
@@ -164,7 +163,7 @@ def update(start, end, node, index, diff):
     if start == end:
         return
     mid = (start + end) // 2
-    update(start, mid, node * 2, index, dif)
-    update(mid + 1, end, node * 2 + 1, index, dif)
+    update(start, mid, node * 2, index, diff)
+    update(mid + 1, end, node * 2 + 1, index, diff)
 ```
 
