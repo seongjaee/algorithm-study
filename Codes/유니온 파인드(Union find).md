@@ -4,7 +4,7 @@
 
 주어진 노드들에 대해서, 두 노드가 같은 그래프에 속하는지(연결되어있는지?) 알아내는 알고리즘이다.
 
-![graph](union_find.assets/graph.png)
+![graph](유니온 파인드(Union find).assets/graph.png)
 
 위와 같은 그래프가 있다면
 
@@ -18,7 +18,7 @@
 
 그럼 위의 그림과 같은 그래프에서 각 노드의 루트 노드를 표시해보면,
 
-![graph_with_roo](union_find.assets/graph_with_roo.png)
+![graph2](유니온 파인드(Union find).assets/graph2.png)
 
 이렇게 된다.
 
