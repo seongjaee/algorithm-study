@@ -27,17 +27,17 @@
 
 `Arr = [6, 3, 2, 7, 1, 5]` 인 배열에 대해 세그먼트 트리는 아래 그림과 같이 나타낼 수 있다.
 
-<img src="세그먼트 트리(Segment tree).assets/tree1.png" alt="tree1" style="zoom:22%;" />
+<img src="세그먼트 트리(Segment tree).assets/tree1.png" alt="tree1" />
 
 각 노드에 인덱스 i-j까지 해당하는 숫자들의 합이 저장된다.
 
 주어진 배열을 반으로 나누어 나눈 배열의 합을 저장하게 된다.
 
-<img src="세그먼트 트리(Segment tree).assets/tree2.png" alt="tree2" style="zoom:22%;" />
+<img src="세그먼트 트리(Segment tree).assets/tree2.png" alt="tree2" />
 
 실제 트리는 아래와 같이 그릴 수 있다.
 
-<img src="세그먼트 트리(Segment tree).assets/tree3.png" alt="tree3" style="zoom:22%;" />
+<img src="세그먼트 트리(Segment tree).assets/tree3.png" alt="tree3"/>
 
 
 
@@ -94,7 +94,7 @@ init_tree(0, n - 1, 1)
 
 즉, 2 + 7 + 1을 구하고 싶다면, 아래 그림과 같이 세그먼트 트리의 5번 노드와 6번 노드를 더해야 한다는 사실을 알 수 있다. 
 
- <img src="세그먼트 트리(Segment tree).assets/tree4.png" alt="tree4" style="zoom:22%;" />
+ <img src="세그먼트 트리(Segment tree).assets/tree4.png" alt="tree4"/>
 
 5번, 6번 노드를 찾는 방법은 **목표 구간에 포함되는 구간만을 찾으면 된다.**
 
