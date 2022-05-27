@@ -35,7 +35,7 @@
 
 <img src="세그먼트 트리(Segment tree).assets/tree2.png" alt="tree2" />
 
-실제 트리는 아래와 같이 그릴 수 있다.
+실제 구간합 트리는 아래와 같이 그릴 수 있다.
 
 <img src="세그먼트 트리(Segment tree).assets/tree3.png" alt="tree3"/>
 
@@ -74,7 +74,7 @@ $$
 
 # 세그먼트 트리 생성
 # 트리의 node번째 노드에 start부터 end까지의 구간 정보를 저장.
-def init_tree(start, end, node):
+def init(start, end, node):
     if start == end:
         tree[node] = arr[start]
     else:
@@ -83,7 +83,7 @@ def init_tree(start, end, node):
     return tree[node]
 
 tree = [None] * (4 * n)
-init_tree(0, n - 1, 1)
+init(0, n - 1, 1)
 ```
 
 
