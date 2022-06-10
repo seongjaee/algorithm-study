@@ -53,3 +53,4 @@ def solution(p):
         temp += ')'
         u = u[1:-1]
         temp += swap(u)
+        return temp
