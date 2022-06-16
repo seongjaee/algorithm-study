@@ -1,5 +1,4 @@
 from itertools import combinations
-from collections import Counter
 
 
 def solution(orders, course):
@@ -14,7 +13,8 @@ def solution(orders, course):
                 counter[menu] = counter.get(menu, 0) + 1
 
         max_cnt = 2
-        for menu, cnt in Counter(counter).most_common():
+        for menu in sorted(counter.keys(), key=lambda x: -counter[x]):
+            cnt = counter[menu]
             max_cnt = max(max_cnt, cnt)
             if cnt >= max_cnt:
                 answer.append("".join(menu))
