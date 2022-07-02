@@ -8,7 +8,7 @@
 
  ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&color=282A36)
 
-![Solved.ac
-프로필](http://mazassumnida.wtf/api/mini/generate_badge?boj=xpsxm468)
+[![Solved.ac
+프로필](http://mazassumnida.wtf/api/mini/generate_badge?boj=xpsxm468)](https://solved.ac/profile/xpsxm468)
 
 [BOJ 프로필](https://www.acmicpc.net/user/xpsxm468)
