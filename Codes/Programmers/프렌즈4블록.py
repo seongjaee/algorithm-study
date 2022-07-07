@@ -79,12 +79,10 @@ def solution(m, n, board):
             for j in range(n - 1):
                 if board[i][j] == ".":
                     continue
-                flag = True
                 for di, dj in arounds:
                     if board[i][j] != board[i + di][j + dj]:
-                        flag = False
                         break
-                if flag:
+                else:
                     boom.append((i, j))
 
         for i, j in boom:
