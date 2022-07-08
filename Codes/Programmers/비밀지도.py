@@ -1,10 +1,7 @@
 def convert2sharp(n, num):
     result = ""
     for x in f"{num:0{n}b}":
-        if x == "0":
-            result += " "
-        else:
-            result += "#"
+        result += "#" if x == "1" else " "
     return result
 
 
