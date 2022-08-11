@@ -4,6 +4,8 @@ input = sys.stdin.readline
 
 # 팀 찾기
 def link_team(hy, hx):
+    visited[hy][hx] = True
+
     stack = [(hy, hx)]
     mid = []
 
@@ -29,17 +31,11 @@ def link_team(hy, hx):
 
 
 def reverse_team(team_idx):
-    team = teams[team_idx]
-    for y, x in team:
-        matrix[y][x] = 4
-
-    team = team[::-1]
+    team = teams[team_idx][::-1]
 
     h, t = team[0], team[-1]
     matrix[h[0]][h[1]] = 1
     matrix[t[0]][t[1]] = 3
-    for y, x in team[1:-1]:
-        matrix[y][x] = 2
 
     teams[team_idx] = team
 
@@ -88,7 +84,6 @@ def get_score(round):
         for x in range(n):
             if 0 < matrix[y][x] < 4:
                 return score(y, x)
-
     elif q == 1:
         x = r
         for y in range(n - 1, -1, -1):
@@ -115,11 +110,9 @@ total_score = 0
 teams = []
 visited = [[False] * n for _ in range(n)]
 
-heads = []
 for i in range(n):
     for j in range(n):
-        if matrix[i][j] == 1 and not visited[i][j]:
-            visited[i][j] = True
+        if matrix[i][j] == 1:
             teams.append(link_team(i, j))
 
 
