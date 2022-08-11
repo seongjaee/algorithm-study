@@ -51,19 +51,20 @@ def jecho(matrix, time):
     # 가장 많이 박멸되는 칸 찾기
     for i in range(n):
         for j in range(n):
-            if matrix[i][j] > 0:
-                tree_cnt = matrix[i][j]
-                for di, dj in DIAGONAL:
-                    for d in range(1, k + 1):
-                        ni, nj = i + di * d, j + dj * d
-                        if ni < 0 or ni >= n or nj < 0 or nj >= n:
-                            break
-                        if matrix[ni][nj] <= 0:
-                            break
-                        tree_cnt += matrix[ni][nj]
-                if max_cnt < tree_cnt:
-                    max_point = (i, j)
-                    max_cnt = tree_cnt
+            if matrix[i][j] <= 0:
+                continue
+            tree_cnt = matrix[i][j]
+            for di, dj in DIAGONAL:
+                for d in range(1, k + 1):
+                    ni, nj = i + di * d, j + dj * d
+                    if ni < 0 or ni >= n or nj < 0 or nj >= n:
+                        break
+                    if matrix[ni][nj] <= 0:
+                        break
+                    tree_cnt += matrix[ni][nj]
+            if max_cnt < tree_cnt:
+                max_point = (i, j)
+                max_cnt = tree_cnt
 
     # 찾은 칸에 뿌리기
     i, j = max_point
