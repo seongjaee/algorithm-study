@@ -81,3 +81,80 @@ fish_pos[fish_num] = (-1, -1)
 answer = 0
 backtrack(deepcopy(matrix), fish_pos[:], fish_num)
 print(answer)
+
+
+## 2번째 풀이
+from copy import deepcopy
+import sys
+
+
+input = sys.stdin.readline
+
+
+def backtrack(matrix, fish_d, sy, sx, res):
+    global answer
+    copy_matrix = deepcopy(matrix)
+    copy_fish_d = fish_d[:]
+
+    # 먹기
+    ate_fish_num = copy_matrix[sy][sx]
+    copy_matrix[sy][sx] = None
+    sd = copy_fish_d[ate_fish_num][2]
+    copy_fish_d[ate_fish_num] = None
+
+    # 물고기 움직임
+    for fish_num in range(1, 17):
+        if copy_fish_d[fish_num] == None:
+            continue
+
+        y, x, d = copy_fish_d[fish_num]
+        for k in range(8):
+            now_d = (d + k) % 8
+            dy, dx = DELTA[now_d]
+            ny, nx = y + dy, x + dx
+            if ny < 0 or ny >= 4 or nx < 0 or nx >= 4 or (ny, nx) == (sy, sx):
+                continue
+
+            nxt_fish_num = copy_matrix[ny][nx]
+            copy_matrix[ny][nx], copy_matrix[y][x] = (
+                copy_matrix[y][x],
+                copy_matrix[ny][nx],
+            )
+            copy_fish_d[fish_num] = (ny, nx, now_d)
+            if nxt_fish_num != None:
+                copy_fish_d[nxt_fish_num] = (y, x, copy_fish_d[nxt_fish_num][2])
+
+            break
+
+    # 상어 움직임
+    dy, dx = DELTA[sd]
+    for k in range(1, 4):
+        ny, nx = sy + dy * k, sx + dx * k
+        if ny < 0 or ny >= 4 or nx < 0 or nx >= 4:
+            break
+        if copy_matrix[ny][nx] == None:
+            continue
+        backtrack(copy_matrix, copy_fish_d, ny, nx, res + ate_fish_num)
+
+    answer = max(answer, res + ate_fish_num)
+
+
+DELTA = [(-1, 0), (-1, -1), (0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1)]
+
+matrix = [[None] * 4 for _ in range(4)]
+fish_d = [None] * 17
+for i in range(4):
+    a1, b1, a2, b2, a3, b3, a4, b4 = map(int, input().split())
+    matrix[i][0] = a1
+    matrix[i][1] = a2
+    matrix[i][2] = a3
+    matrix[i][3] = a4
+    fish_d[a1] = (i, 0, b1 - 1)
+    fish_d[a2] = (i, 1, b2 - 1)
+    fish_d[a3] = (i, 2, b3 - 1)
+    fish_d[a4] = (i, 3, b4 - 1)
+
+answer = 0
+backtrack(matrix, fish_d, 0, 0, 0)
+
+print(answer)
