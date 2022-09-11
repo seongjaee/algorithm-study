@@ -20,10 +20,7 @@ def is_right_closed(i, j):
 
 
 def is_filled(i, j):
-    if j == 0 or j == W - 1:
-        return False
-
-    return is_left_closed(i, j - 1) and is_right_closed(i, j + 1)
+    return is_left_closed(i, j) and is_right_closed(i, j)
 
 
 H, W = map(int, input().split())
@@ -39,6 +36,5 @@ for i in range(H):
     for j in range(W):
         if matrix[i][j] == 0 and is_filled(i, j):
             cnt += 1
-
 
 print(cnt)
