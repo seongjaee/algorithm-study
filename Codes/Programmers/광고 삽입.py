@@ -44,3 +44,46 @@ def solution(play_time, adv_time, logs):
     answer = result[0]
 
     return answer
+
+
+# 두번째 풀이
+def hhmmss2time(hhmmss):
+    hh, mm, ss = map(int, hhmmss.split(":"))
+    return hh * 3600 + mm * 60 + ss
+
+
+def time2hhmmss(time):
+    hh, mmss = divmod(time, 3600)
+    mm, ss = divmod(mmss, 60)
+    return f"{hh:02}:{mm:02}:{ss:02}"
+
+
+def solution(play_time, adv_time, logs):
+    timestamp = [0] * (hhmmss2time(play_time) + 2)
+    adv_time_long = hhmmss2time(adv_time)
+
+    for log in logs:
+        start_time, end_time = map(hhmmss2time, log.split("-"))
+        timestamp[start_time] += 1
+        timestamp[end_time] -= 1
+
+    presum = [timestamp[0]]
+    for i in range(1, len(timestamp)):
+        presum.append(presum[-1] + timestamp[i])
+
+    left = 0
+    right = adv_time_long - 1
+    window = sum(presum[left : right + 1])
+
+    max_value = window
+    max_idx = left
+    while right < len(presum) - 1:
+        window -= presum[left]
+        window += presum[right + 1]
+        left += 1
+        right += 1
+        if window > max_value:
+            max_value = window
+            max_idx = left
+
+    return time2hhmmss(max_idx)
