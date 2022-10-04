@@ -1,6 +1,6 @@
 import sys
 
-sys.setrecursionlimit(100000)
+sys.setrecursionlimit(20000)
 
 input = sys.stdin.readline
 
