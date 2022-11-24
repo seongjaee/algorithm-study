@@ -3,28 +3,16 @@ import sys
 input = sys.stdin.readline
 
 
-class Manager:
-    def __init__(self):
-        self.rooms = []
-
-    def print_result(self):
-        for room in self.rooms:
-            room.print_room()
-
-    def apply_join(self, player):
-        for room in self.rooms:
-            if player.is_accessable_room(room):
-                room.put_in(player)
-                return
-
-        new_room = Room(self, player)
-        self.rooms.append(new_room)
+class Player:
+    def __init__(self, level, name):
+        self.level = level
+        self.name = name
 
 
 class Room:
-    def __init__(self, room_manager, master):
+    def __init__(self, master: Player):
         self.master_level = master.level
-        self.room_manager = room_manager
+        self.room_manager = MANAGER
         self.players = [master]
 
     def put_in(self, player):
@@ -38,25 +26,36 @@ class Room:
             print(f"{player.level} {player.name}")
 
 
-class Player:
-    def __init__(self, level, name):
-        self.level = level
-        self.name = name
+class Manager:
+    def __init__(self):
+        self.rooms = []
 
-    def is_accessable_room(self, room: Room):
+    def is_accessable_room(self, player: Player, room: Room):
         if len(room.players) == m:
             return False
 
-        return self.level - 10 <= room.master_level <= self.level + 10
+        return player.level - 10 <= room.master_level <= player.level + 10
+
+    def print_result(self):
+        for room in self.rooms:
+            room.print_room()
+
+    def apply_join(self, player):
+        for room in self.rooms:
+            if self.is_accessable_room(player, room):
+                room.put_in(player)
+                return
+
+        new_room = Room(player)
+        self.rooms.append(new_room)
 
 
-room_manager = Manager()
-
+MANAGER = Manager()
 p, m = map(int, input().split())
 
 for _ in range(p):
     level, name = input().split()
     player = Player(int(level), name)
-    room_manager.apply_join(player)
+    MANAGER.apply_join(player)
 
-room_manager.print_result()
+MANAGER.print_result()
