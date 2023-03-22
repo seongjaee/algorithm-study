@@ -1,92 +1,106 @@
 from copy import deepcopy
 import sys
 
-input = sys.stdin.readline
 
+def init_groups(matrix):
+    def dfs(sy, sx):
+        group = [(sy, sx)]
+        stack = [(sy, sx)]
+        visited[sy][sx] = True
+        while stack:
+            y, x = stack.pop()
+            for dy, dx in DELTA:
+                ny, nx = y + dy, x + dx
+                if ny < 0 or nx < 0 or ny >= n or nx >= n:
+                    continue
+                if visited[ny][nx] or matrix[ny][nx] != matrix[sy][sx]:
+                    continue
+                visited[ny][nx] = True
+                stack.append((ny, nx))
+                group.append((ny, nx))
 
-def get_score(matrix):
-    def find(x):
-        if x != parents[x]:
-            parents[x] = find(parents[x])
-        return parents[x]
+        return group
 
-    def union(x, y):
-        x = find(x)
-        y = find(y)
-
-        if x == y:
-            return
-        elif x < y:
-            parents[y] = x
-            sizes[x[0]][x[1]] += sizes[y[0]][y[1]]
-        else:
-            parents[x] = y
-            sizes[y[0]][y[1]] += sizes[x[0]][x[1]]
-
-    parents = {(i, j): (i, j) for i in range(n) for j in range(n)}
-    sizes = [[1] * n for _ in range(n)]
-
-    between_cnt = {}
+    groups = []
+    visited = [[False] * n for _ in range(n)]
     for i in range(n):
         for j in range(n):
-            for di, dj in DELTA:
-                ni, nj = i + di, j + dj
-                if ni < 0 or ni >= n or nj < 0 or nj >= n:
-                    continue
-                if find((i, j)) == find((ni, nj)):
-                    continue
-                if matrix[i][j] == matrix[ni][nj]:
-                    union((i, j), (ni, nj))
+            if visited[i][j]:
+                continue
+            groups.append(dfs(i, j))
 
-    total_score = 0
-    for i in range(n):
-        for j in range(n):
-            if i + 1 < n and matrix[i][j] != matrix[i + 1][j]:
-                p1 = find((i, j))
-                p2 = find((i + 1, j))
-                p1, p2 = min(p1, p2), max(p1, p2)
-                between_cnt[(p1, p2)] = between_cnt.get((p1, p2), 0) + 1
-
-            if j + 1 < n and matrix[i][j] != matrix[i][j + 1]:
-                p1 = find((i, j))
-                p2 = find((i, j + 1))
-                p1, p2 = min(p1, p2), max(p1, p2)
-                between_cnt[(p1, p2)] = between_cnt.get((p1, p2), 0) + 1
-
-    for key, value in between_cnt.items():
-        a, b = key
-        ay, ax = a
-        by, bx = b
-
-        score = (
-            (sizes[ay][ax] + sizes[by][bx]) * matrix[ay][ax] * matrix[by][bx] * value
-        )
-        total_score += score
-
-    return total_score
+    return groups
 
 
-def spin():
-    mid = n // 2
-    # 십자
-    for i in range(mid):
+def indexing(groups):
+    indexed = [[None] * n for _ in range(n)]
+    for i, group in enumerate(groups):
+        for y, x in group:
+            indexed[y][x] = i
+    return indexed
+
+
+def get_arounds_count(indexed, group):
+    arounds = {}
+    for y, x in group:
+        for dy, dx in DELTA:
+            ny, nx = y + dy, x + dx
+            if ny < 0 or nx < 0 or ny >= n or nx >= n:
+                continue
+            if indexed[ny][nx] == indexed[y][x]:
+                continue
+            nxt_idx = indexed[ny][nx]
+            arounds[nxt_idx] = arounds.get(nxt_idx, 0) + 1
+
+    return arounds
+
+
+def get_art_score(matrix):
+    groups = init_groups(matrix)
+    indexed = indexing(groups)
+    group_sizes = []  # 그룹에 속한 칸의 수
+    group_nums = []  # 그룹을 이루고 있는 숫자
+    for group in groups:
+        group_sizes.append(len(group))
+
+        y, x = group[0]
+        group_nums.append(matrix[y][x])
+
+    score = 0
+    for now_idx, group in enumerate(groups):
+        arounds_counter = get_arounds_count(indexed, group)
+
+        for nxt_idx, count in arounds_counter.items():
+            score += (
+                (group_sizes[now_idx] + group_sizes[nxt_idx])
+                * group_nums[now_idx]
+                * group_nums[nxt_idx]
+                * count
+            )
+
+    return score // 2
+
+
+def spin_cross(matrix):
+    def spin(i):
+        # (i, n // 2) => (n // 2, i) => (n - i, n // 2) => (n // 2, n - i)
         (
-            matrix[mid][i],
-            matrix[n - 1 - i][mid],
-            matrix[mid][n - 1 - i],
-            matrix[i][mid],
+            matrix[n // 2][i],
+            matrix[n - 1 - i][n // 2],
+            matrix[n // 2][n - 1 - i],
+            matrix[i][n // 2],
         ) = (
-            matrix[i][mid],
-            matrix[mid][i],
-            matrix[n - 1 - i][mid],
-            matrix[mid][n - 1 - i],
+            matrix[i][n // 2],
+            matrix[n // 2][i],
+            matrix[n - 1 - i][n // 2],
+            matrix[n // 2][n - 1 - i],
         )
 
-    rotate()
+    for i in range(n // 2):
+        spin(i)
 
 
-def rotate():
-    global matrix
+def spin_square(matrix):
     new_matrix = deepcopy(matrix)
 
     mid = n // 2
@@ -100,18 +114,25 @@ def rotate():
             for x in range(sx, ex + 1):
                 new_matrix[y][x] = matrix[ey - x + sx][sx + y - sy]
 
-    matrix = new_matrix
+    return new_matrix
 
 
-DELTA = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+def simulate():
+    global answer, matrix
+    score = get_art_score(matrix)
+    answer += score
+    spin_cross(matrix)
+    matrix = spin_square(matrix)
+
+
+input = sys.stdin.readline
 n = int(input())
 matrix = [[*map(int, input().split())] for _ in range(n)]
+DELTA = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
 answer = 0
-for i in range(4):
-    answer += get_score(matrix)
-    if i == 3:
-        break
-    spin()
+
+for _ in range(4):
+    simulate()
 
 print(answer)
